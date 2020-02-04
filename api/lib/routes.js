@@ -1,5 +1,6 @@
 const homeController = require('../controllers/home/homeController');
 const sessionsController = require('../controllers/sessions/sessionsController');
+const usersController = require('../controllers/users/usersController');
 
 const errorHandler = require('./errorHandler');
 
@@ -28,6 +29,8 @@ module.exports = function (app) {
 
   app.post('/login', ensureAnonymous, sessionsController.create);
   app.post('/logout', ensureAuthenticated, sessionsController.destroy);
+
+  app.post('/api/users', ensureAnonymous, usersController.create);
 
   app.get('*', homeController.index);
 
