@@ -1,0 +1,8 @@
+{
+  "host": "localhost",
+  "username": "haichi",
+  "password": "haichi",
+  "database": "haichi",
+  "dialect": "mysql",
+  "logging": true
+}

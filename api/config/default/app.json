@@ -1,0 +1,17 @@
+{
+  "sessionSecret": "X@twj!d9$TIz@VM&%V8J",
+  "cookieSecret": "yzLdlq8y#ski@G5P@s2j",
+  "sessionDriver": "file",
+  "protocol": "http",
+  "host": "dev-haichi.app",
+  "port": 3000,
+  "listenPort": 3000,
+  "logging": "console",
+  "cache": {
+    "defaultTimeout": 600
+  },
+  "sentry": {
+    "public": null,
+    "secret": null
+  }
+}
