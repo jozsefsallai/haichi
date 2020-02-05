@@ -29,6 +29,14 @@ a {
   }
 }
 
+h1, h2 {
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 30px;
+}
+
 .input-wrapper {
   padding: 15px 0;
 }
@@ -79,4 +87,30 @@ button {
 .slide-fade-enter, .slide-fade-leave-to {
   opacity: 0;
   transform: translateX(30px);
+}
+
+.table {
+  .row {
+    border-bottom: 1px solid #e3e3e3;
+    display: flex;
+    align-items: flex-start;
+
+    .name, .value {
+      box-sizing: border-box;
+      padding: 10px;
+    }
+
+    .name {
+      width: 30%;
+      font-weight: bold;
+    }
+
+    .value {
+      width: 70%;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
 }

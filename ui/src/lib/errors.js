@@ -11,6 +11,7 @@ export default {
     VALIDATION: 'Something is wrong with your input.'
   },
   keys: {
-    KEY_ALREADY_EXISTS: 'You already have an API key.'
+    KEY_ALREADY_EXISTS: 'You already have an API key.',
+    KEY_NOT_FOUND: 'You are trying to update a key that doesnt exist.'
   }
 };

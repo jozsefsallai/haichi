@@ -2,11 +2,19 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import * as mutations from './mutations';
+import * as actions from './actions';
 
 Vue.use(Vuex);
 
 const initialState = {
-  user: null
+  meta: {
+    key: {
+      mutating: false,
+      errored: false
+    }
+  },
+  user: null,
+  key: null
 };
 
 export default new Vuex.Store({
@@ -14,5 +22,7 @@ export default new Vuex.Store({
 
   state: initialState,
 
-  mutations
+  mutations,
+
+  actions
 });

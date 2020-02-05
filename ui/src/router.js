@@ -12,15 +12,17 @@ import NotFoundPage from 'views/NotFoundPage';
 import SignupPage from 'views/auth/Signup';
 import LoginPage from 'views/auth/Login';
 
+import UserPage from 'views/UserPage';
+
 Vue.use(VueRouter);
 
-// function ensureAuthenticated (to, from, next) {
-//   if (!store.state.user) {
-//     return next('/login');
-//   }
+function ensureAuthenticated (to, from, next) {
+  if (!store.state.user) {
+    return next('/login');
+  }
 
-//   next();
-// }
+  next();
+}
 
 function ensureAnonymous (to, from, next) {
   if (store.state.user) {
@@ -46,6 +48,11 @@ export default new VueRouter({
       path: '/login',
       beforeEnter: ensureAnonymous,
       component: LoginPage
+    },
+    {
+      path: '/user',
+      beforeEnter: ensureAuthenticated,
+      component: UserPage
     },
     {
       path: '*',
