@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 
 import 'components/Root';
 import 'components/structure/Loading';
+import 'components/structure/toaster/ToastContainer';
 
 import IndexPage from 'views/IndexPage';
 import NotFoundPage from 'views/NotFoundPage';
