@@ -12,7 +12,8 @@
           ) {{ item.name }}
           a(v-if='user', href='javascript:;', @click='handleLogoutClick') Log Out
     section.content.mid(:class='{ auth: authPage }')
-      slot
+      transition(name='slide-fade', mode='out-in', appear=true)
+        slot
     the-footer
 </template>
 
