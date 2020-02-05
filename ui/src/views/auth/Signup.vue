@@ -52,8 +52,8 @@ export default {
         .then(res => res.json())
         .then(json => {
           if (json.ok) {
-            this.$store.commit('setUser', json);
-            Toaster.create('success', `Welcome, ${json.name}!`, 'Woohoo!');
+            this.$store.commit('setUser', json.user);
+            Toaster.create('success', `Welcome, ${json.user.name}!`, 'Woohoo!');
             this.$router.push('/user');
           } else {
             if (json.errors && json.errors.length) {
