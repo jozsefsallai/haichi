@@ -1,9 +1,30 @@
-// sinkinsans
+// fira sans
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Fira Sans Regular'), local('FiraSans-Regular'),
+       url('fonts/firasans/fira-sans-regular.woff2') format('woff2'),
+       url('fonts/firasans/fira-sans-regular.woff') format('woff'),
+       url('fonts/firasans/fira-sans-regular.ttf') format('truetype');
+}
 
 @font-face {
-  font-family: 'sinkinsans';
-  src: url('fonts/sinkinsans/sinkinsans-regular.woff') format('woff'),
-       url('fonts/sinkinsans/sinkinsans-regular.ttf')  format('ttf');
-  font-weight: normal;
+  font-family: 'Fira Sans';
   font-style: normal;
+  font-weight: 600;
+  src: local('Fira Sans SemiBold'), local('FiraSans-SemiBold'),
+       url('fonts/firasans/fira-sans-600.woff2') format('woff2'),
+       url('fonts/firasans/fira-sans-600.woff') format('woff'),
+       url('fonts/firasans/fira-sans-600.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Fira Sans ExtraBold'), local('FiraSans-ExtraBold'),
+       url('fonts/firasans/fira-sans-800.woff2') format('woff2'),
+       url('fonts/firasans/fira-sans-800.woff') format('woff'),
+       url('fonts/firasans/fira-sans-800.ttf') format('truetype');
 }

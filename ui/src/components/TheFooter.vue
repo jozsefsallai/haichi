@@ -18,7 +18,7 @@ export default {
     text-align: center;
     padding: 35px 10px;
     color: #aaa;
-    font-size: 11px;
+    font-size: 13px;
 
     .github {
       i {

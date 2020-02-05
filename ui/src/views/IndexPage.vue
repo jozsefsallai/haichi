@@ -55,7 +55,7 @@ export default {
     display: flex;
 
     input, button {
-      font-family: 'sinkinsans', sans-serif;
+      font-family: 'Fira Sans', sans-serif;
       padding: 15px;
       box-sizing: border-box;
       outline: none;
