@@ -12,3 +12,18 @@ export default {
   name: 'the-footer'
 };
 </script>
+
+<style lang="scss">
+  footer {
+    text-align: center;
+    padding: 35px 10px;
+    color: #aaa;
+    font-size: 13px;
+
+    .github {
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
+</style>
