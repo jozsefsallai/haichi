@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 // import store from 'state/store';
 
 import 'components/Root';
+import 'components/structure/Loading';
 
 import IndexPage from 'views/IndexPage';
 import NotFoundPage from 'views/NotFoundPage';

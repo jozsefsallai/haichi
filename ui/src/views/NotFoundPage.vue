@@ -4,9 +4,10 @@
       h1.title Uh-oh!
       p
         | What you tried to open... could not be found.
-        | Perhaps, you could
+        br
+        | Perhaps, you could try
         |
-        router-link(to='/') go back to the home page
+        router-link(to='/') going back to the home page
         | ?
 </template>
 

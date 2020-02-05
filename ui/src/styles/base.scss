@@ -1,3 +1,4 @@
+@import './colors';
 @import './fonts';
 @import './globals';
 
@@ -9,4 +10,17 @@ body {
 .mid {
   width: $default-page-width;
   margin: 0 auto;
+}
+
+.page {
+  margin: 45px 0;
+}
+
+a {
+  text-decoration: none;
+  color: lighten($accent, 25%);
+
+  &:hover {
+    color: lighten($accent, 50%);
+  }
 }
