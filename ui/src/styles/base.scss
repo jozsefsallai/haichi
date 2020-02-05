@@ -10,6 +10,10 @@ body {
 .mid {
   width: $default-page-width;
   margin: 0 auto;
+
+  &.auth {
+    width: 400px;
+  }
 }
 
 .page {
@@ -22,5 +26,47 @@ a {
 
   &:hover {
     color: lighten($accent, 50%);
+  }
+}
+
+.input-wrapper {
+  padding: 15px 0;
+}
+
+label {
+  display: block;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  font-family: 'Fira Sans', sans-serif;
+  padding: 15px 20px;
+  border: 1px solid $accent;
+  outline: none;
+
+  &:focus {
+    background: #f3f3f3;
+  }
+}
+
+button {
+  display: inline-block;
+  border: 0;
+  background: $accent;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 15px 25px;
+  cursor: pointer;
+  outline: none;
+  transition: background 150ms linear;
+
+  &:hover {
+    background: lighten($accent, 10%);
   }
 }

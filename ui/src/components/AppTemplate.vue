@@ -5,20 +5,75 @@
         .logo
           router-link(to='/') Haichi
         nav.main-nav
-          router-link(to='/') Home
-          router-link(to='/login') Log In
-    section.content.mid
+          router-link(
+            v-for='item, idx in navigationItems'
+            :key='idx'
+            :to='item.route'
+          ) {{ item.name }}
+          a(v-if='user', href='javascript:;', @click='handleLogoutClick') Log Out
+    section.content.mid(:class='{ auth: authPage }')
       slot
     the-footer
 </template>
 
 <script>
 import TheFooter from 'components/TheFooter';
+import { mapState } from 'vuex';
+import Toaster from 'lib/toaster';
 
 export default {
   name: 'app-template',
+  props: {
+    authPage: {
+      type: Boolean,
+      default: false
+    }
+  },
   components: {
     'the-footer': TheFooter
+  },
+  computed: {
+    ...mapState([ 'user' ]),
+    navigationItems () {
+      const items = [
+        { route: '/', name: 'Home' }
+      ];
+
+      if (this.user) {
+        items.push({ route: '/user', name: this.user.name });
+      } else {
+        items.push(
+          { route: '/login', name: 'Log In' },
+          { route: '/signup', name: 'Sign Up' }
+        );
+      }
+
+      return items;
+    },
+  },
+  methods: {
+    handleLogoutClick () {
+      return fetch('/logout', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        credentials: 'same-origin'
+      })
+        .then(res => res.json())
+        .then(json => {
+          if (json.ok) {
+            this.$store.commit('setUser', null);
+            Toaster.create('success', 'You have been logged out successfully!', 'Bye!');
+            this.$router.push('/');
+          }
+        })
+        .catch(err => {
+          throw new Error(err);
+          Toaster.create('danger', 'Something bad happened. You have not been logged out.', 'Uh-oh!');
+        });
+    }
   }
 };
 </script>

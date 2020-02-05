@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-// import store from 'state/store';
+import store from 'state/store';
 
 import 'components/Root';
 import 'components/structure/Loading';
@@ -8,6 +8,9 @@ import 'components/structure/toaster/ToastContainer';
 
 import IndexPage from 'views/IndexPage';
 import NotFoundPage from 'views/NotFoundPage';
+
+import SignupPage from 'views/auth/Signup';
+import LoginPage from 'views/auth/Login';
 
 Vue.use(VueRouter);
 
@@ -19,13 +22,13 @@ Vue.use(VueRouter);
 //   next();
 // }
 
-// function ensureAnonymous (to, from, next) {
-//   if (store.state.user) {
-//     return next('/user');
-//   }
+function ensureAnonymous (to, from, next) {
+  if (store.state.user) {
+    return next('/user');
+  }
 
-//   next();
-// }
+  next();
+}
 
 export default new VueRouter({
   mode: 'history',
@@ -33,6 +36,16 @@ export default new VueRouter({
     {
       path: '/',
       component: IndexPage
+    },
+    {
+      path: '/signup',
+      beforeEnter: ensureAnonymous,
+      component: SignupPage
+    },
+    {
+      path: '/login',
+      beforeEnter: ensureAnonymous,
+      component: LoginPage
     },
     {
       path: '*',
