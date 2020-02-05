@@ -33,6 +33,7 @@ module.exports = function (app) {
   app.post('/logout', ensureAuthenticated, sessionsController.destroy);
 
   app.post('/api/users', ensureAnonymous, usersController.create);
+  app.put('/api/users', ensureAuthenticated, usersController.update);
 
   app.get('/api/keys', ensureAuthenticated, keysController.get);
   app.post('/api/keys', ensureAuthenticated, keysController.create);

@@ -1,13 +1,22 @@
 <template lang="pug">
-  app-template
+  app-template(:key='user.updatedAt')
     .page
       h1 Welcome, {{ user.name }}!
       .userpage-container
         h2 Basic Settings
-        user-details
+        user-details(
+          :user='user'
+          :loading='loading'
+          @startloading='handleStartLoading'
+          @stoploading='handleStopLoading'
+        )
       .userpage-container
         h2 Change Your Password
-        user-password
+        user-password(
+          :loading='loading'
+          @startloading='handleStartLoading'
+          @stoploading='handleStopLoading'
+        )
       .userpage-container
         h2 Your API Key
         api-key-container
@@ -29,8 +38,21 @@ export default {
     'user-details': UserDetails,
     'user-password': UserPassword
   },
+  data () {
+    return {
+      loading: false
+    };
+  },
   computed: {
     ...mapState([ 'user' ])
+  },
+  methods: {
+    handleStartLoading () {
+      this.loading = true;
+    },
+    handleStopLoading () {
+      this.loading = false;
+    }
   }
 };
 </script>

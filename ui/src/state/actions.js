@@ -38,7 +38,7 @@ export function createKey ({ state, commit }) {
     .then(res => res.json())
     .then(json => {
       if (!json.ok) {
-        return commit('createKeyFailure', getErrors(err));
+        return commit('createKeyFailure', json.errors || []);
       }
 
       return commit('createKeySuccess', json.key)
@@ -57,10 +57,30 @@ export function updateKey ({ state, commit }, id) {
     .then(res => res.json())
     .then(json => {
       if (!json.ok) {
-        return commit('updateKeyFailure', getErrors(err));
+        return commit('updateKeyFailure', json.errors || []);
       }
 
       return commit('updateKeySuccess', json.key)
     })
     .catch(err => commit('updateKeyFailure', getErrors(err)));
+};
+
+export function updateUser ({ state, commit }, payload) {
+  commit('updateUserStart');
+
+  return fetch('/api/users', {
+    method: 'PUT',
+    headers,
+    credentials: 'same-origin',
+    body: JSON.stringify(payload)
+  })
+    .then(res => res.json())
+    .then(json => {
+      if (!json.ok) {
+        return commit('updateUserFailure', json.errors || []);
+      }
+
+      return commit('updateUserSuccess', json.user);
+    })
+    .catch(err => commit('updateUserFailure', getErrors(err)));
 };

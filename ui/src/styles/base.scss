@@ -77,6 +77,11 @@ button {
   &:hover {
     background: lighten($accent, 10%);
   }
+
+  &[disabled] {
+    background: #aaa;
+    cursor: not-allowed;
+  }
 }
 
 .slide-fade-enter-active, .slide-fade-leave-active {

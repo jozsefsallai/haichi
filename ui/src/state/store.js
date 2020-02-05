@@ -8,6 +8,10 @@ Vue.use(Vuex);
 
 const initialState = {
   meta: {
+    user: {
+      mutating: false,
+      errored: true
+    },
     key: {
       mutating: false,
       errored: false
