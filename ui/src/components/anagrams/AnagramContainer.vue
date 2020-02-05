@@ -55,6 +55,7 @@ export default {
       .catch(err => {
         this.loading = false;
         this.errored = true;
+        throw new Error(err);
       });
   }
 };

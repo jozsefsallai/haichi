@@ -34,11 +34,6 @@
 <script>
 export default {
   name: 'api-key-container',
-  mounted () {
-    if (!this.apiKey) {
-      this.$store.dispatch('fetchKey');
-    }
-  },
   computed: {
     apiKey () {
       return this.$store.state.key;
@@ -48,6 +43,11 @@ export default {
     },
     isErrored () {
       return this.$store.state.meta.key.errored;
+    }
+  },
+  mounted () {
+    if (!this.apiKey) {
+      this.$store.dispatch('fetchKey');
     }
   },
   methods: {

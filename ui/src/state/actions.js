@@ -22,7 +22,7 @@ export function fetchKey ({ state, commit }) {
         return commit('fetchKeyFailure');
       }
 
-      return commit('fetchKeySuccess', json.key)
+      return commit('fetchKeySuccess', json.key);
     })
     .catch(() => commit('fetchKeyFailure'));
 };
@@ -41,7 +41,7 @@ export function createKey ({ state, commit }) {
         return commit('createKeyFailure', json.errors || []);
       }
 
-      return commit('createKeySuccess', json.key)
+      return commit('createKeySuccess', json.key);
     })
     .catch(err => commit('createKeyFailure', getErrors(err)));
 };
@@ -60,7 +60,7 @@ export function updateKey ({ state, commit }, id) {
         return commit('updateKeyFailure', json.errors || []);
       }
 
-      return commit('updateKeySuccess', json.key)
+      return commit('updateKeySuccess', json.key);
     })
     .catch(err => commit('updateKeyFailure', getErrors(err)));
 };

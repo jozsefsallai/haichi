@@ -41,7 +41,7 @@ module.exports.create = function (req, res, next) {
     });
 };
 
-module.exports.update = function (req, res) {
+module.exports.update = function (req, res, next) {
   const { id } = req.params;
 
   updateKey(req.user, id)

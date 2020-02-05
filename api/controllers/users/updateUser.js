@@ -1,4 +1,3 @@
-const User = require('./User');
 const passwords = require('./passwords');
 const { APIError } = require('../../core/errors');
 const difference = require('lodash.difference');
@@ -18,7 +17,7 @@ function verifyPassword(user, password) {
   return passwords.verify(password, user.password);
 }
 
-module.exports.updateAttribute = function updateAttribute (user, key, value, opts = {}) {
+module.exports.updateAttribute = function updateAttribute(user, key, value, opts = {}) {
   return new Promise((resolve, reject) => {
     if (key === 'password2') {
       return resolve(user);

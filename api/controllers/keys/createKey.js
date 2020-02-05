@@ -10,7 +10,7 @@ class KeyCreationError extends APIError {
   }
 }
 
-module.exports = async function createKey (user) {
+module.exports = async function createKey(user) {
   const entry = await Key.findOne({ where: { userId: user.id } });
 
   if (entry) {

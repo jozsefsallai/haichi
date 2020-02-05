@@ -24,14 +24,14 @@ import Toaster from 'lib/toaster';
 
 export default {
   name: 'app-template',
+  components: {
+    'the-footer': TheFooter
+  },
   props: {
     authPage: {
       type: Boolean,
       default: false
     }
-  },
-  components: {
-    'the-footer': TheFooter
   },
   computed: {
     ...mapState([ 'user' ]),
@@ -50,7 +50,7 @@ export default {
       }
 
       return items;
-    },
+    }
   },
   methods: {
     handleLogoutClick () {
@@ -71,8 +71,8 @@ export default {
           }
         })
         .catch(err => {
-          throw new Error(err);
           Toaster.create('danger', 'Something bad happened. You have not been logged out.', 'Uh-oh!');
+          throw new Error(err);
         });
     }
   }
