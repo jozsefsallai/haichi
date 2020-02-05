@@ -9,5 +9,8 @@ export default {
     MISSING_NAME: 'Please provide your name.',
     USERNAME_NOT_UNIQUE: 'The provided username already exists.',
     VALIDATION: 'Something is wrong with your input.'
+  },
+  keys: {
+    KEY_ALREADY_EXISTS: 'You already have an API key.'
   }
 };
