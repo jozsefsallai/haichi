@@ -30,16 +30,16 @@ export default {
   components: {
     'the-footer': TheFooter
   },
-  data () {
-    return {
-      navOpened: false
-    };
-  },
   props: {
     authPage: {
       type: Boolean,
       default: false
     }
+  },
+  data () {
+    return {
+      navOpened: false
+    };
   },
   computed: {
     ...mapState([ 'user' ]),

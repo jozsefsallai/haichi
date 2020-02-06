@@ -4,7 +4,7 @@ const Key = require('../keys/Key');
 
 const clean = str => str.toLowerCase().replace(/[^A-Za-z0-9]/, '').split('').sort().join('');
 
-function isValidAPIKey (apikey) {
+function isValidAPIKey(apikey) {
   return new Promise((resolve, reject) => {
     return Key.findOne({ where: { apikey } })
       .then(key => {
