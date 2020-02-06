@@ -1,6 +1,7 @@
 @import './colors';
 @import './fonts';
 @import './globals';
+@import './mixins';
 
 body {
   margin: 0;
@@ -13,6 +14,12 @@ body {
 
   &.auth {
     width: 400px;
+  }
+
+  @include md-break {
+    width: auto;
+    margin: 0;
+    padding: 0 15px;
   }
 }
 

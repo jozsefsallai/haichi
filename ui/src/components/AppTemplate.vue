@@ -4,13 +4,16 @@
       .mid
         .logo
           router-link(to='/') Haichi
-        nav.main-nav
+        nav.main-nav(:class='{ active: navOpened }')
           router-link(
             v-for='item, idx in navigationItems'
             :key='idx'
             :to='item.route'
           ) {{ item.name }}
           a(v-if='user', href='javascript:;', @click='handleLogoutClick') Log Out
+      .hamburger-container
+        a(href='javascript:;', @click='handleHamburgerClick')
+          i.fa.fa-bars
     section.content.mid(:class='{ auth: authPage }')
       transition(name='slide-fade', mode='out-in', appear=true)
         slot
@@ -26,6 +29,11 @@ export default {
   name: 'app-template',
   components: {
     'the-footer': TheFooter
+  },
+  data () {
+    return {
+      navOpened: false
+    };
   },
   props: {
     authPage: {
@@ -74,6 +82,9 @@ export default {
           Toaster.create('danger', 'Something bad happened. You have not been logged out.', 'Uh-oh!');
           throw new Error(err);
         });
+    },
+    handleHamburgerClick () {
+      this.navOpened = !this.navOpened;
     }
   }
 };
@@ -81,15 +92,21 @@ export default {
 
 <style lang="scss">
   @import 'src/styles/colors';
+  @import 'src/styles/mixins';
 
   header {
     background: $accent;
     color: #fff;
+    position: relative;
 
     .mid {
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @include ms-break {
+        display: block;
+      }
     }
 
     .logo {
@@ -99,10 +116,23 @@ export default {
         color: #fff;
         border: 0;
         text-decoration: none;
+        display: inline-block;
+
+        @include ms-break {
+          padding: 12px 0;
+        }
       }
     }
 
     .main-nav {
+      @include ms-break {
+        display: none;
+
+        &.active {
+          display: block;
+        }
+      }
+
       a {
         display: inline-block;
         padding: 20px 25px;
@@ -131,6 +161,36 @@ export default {
         &:last-child {
           margin-right: 0;
         }
+
+        @include ms-break {
+          display: block;
+          padding: 10px 15px;
+
+          &::before {
+            display: none;
+          }
+
+          &.router-link-exact-active {
+            background: rgba(255, 255, 255, .2)
+          }
+        }
+      }
+    }
+
+    .hamburger-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: none;
+
+      a {
+        display: inline-block;
+        font-size: 24px;
+        color: #fff;
+      }
+
+      @include ms-break {
+        display: block;
       }
     }
   }

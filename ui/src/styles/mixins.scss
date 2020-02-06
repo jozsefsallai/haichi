@@ -1,0 +1,13 @@
+@import './globals';
+
+@mixin md-break() {
+  @media only screen and ( max-width: $md-break-width ) {
+    @content
+  }
+}
+
+@mixin ms-break() {
+  @media only screen and ( max-width: $ms-break-width ) {
+    @content
+  }
+}
