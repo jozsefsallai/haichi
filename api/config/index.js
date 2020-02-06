@@ -32,7 +32,7 @@ function deepassign(dest, src) {
 deepassign(defaultConfig, envConfig);
 
 if (env === 'production') {
-  const secretsConfigFilename = '/var/secrets/factful.json';
+  const secretsConfigFilename = '/var/secrets/haichi.json';
   if (!fs.existsSync(secretsConfigFilename)) {
     throw new Error('Failed to start app, secrets config file not found');
   }
