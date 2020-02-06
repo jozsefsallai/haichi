@@ -39,6 +39,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^5.2.3",
     "express": "^4.17.1",
+    "express-bearer-token": "^2.4.0",
     "express-session": "^1.16.2",
     "file-loader": "^2",
     "font-awesome": "^4.7.0",

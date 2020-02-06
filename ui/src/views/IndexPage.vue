@@ -20,7 +20,12 @@
         button(type='submit')
           i.fa.fa-search
           span Find Anagrams
-      anagram-container(v-if='phrase && phrase.length', :phrase='phrase', :key='phrase')
+      anagram-container(
+        v-if='phrase && phrase.length'
+        :phrase='phrase'
+        :key='phrase'
+        :isResponseLimited='isResponseLimited'
+      )
 </template>
 
 <script>
@@ -37,6 +42,11 @@ export default {
     return {
       phrase: null
     };
+  },
+  computed: {
+    isResponseLimited () {
+      return !this.$store.state.user;
+    }
   },
   methods: {
     handleFormSubmit (e) {

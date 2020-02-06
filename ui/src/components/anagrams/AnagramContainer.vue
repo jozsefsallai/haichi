@@ -7,6 +7,13 @@
         .anagrams-container(v-if='anagrams && anagrams.length')
           h2 Found {{ anagrams.length }} {{ anagrams.length === 1 ? 'anagram' : 'anagrams' }}.
           .list {{ anagrams.join(', ') }}
+          .limited-results-notice(v-if='isResponseLimited')
+            | Note: in order to avoid abuse, the number of returned anagrams is limited, so it's
+            | likely that there are more anagrams than the ones listed above. If you want to
+            | view the full list, you have to
+            |
+            router-link(to='/signup') create an account
+            | .
 </template>
 
 <script>
@@ -16,6 +23,10 @@ export default {
     phrase: {
       type: String,
       required: true
+    },
+    isResponseLimited: {
+      type: Boolean,
+      defualt: true
     }
   },
   data () {
@@ -69,6 +80,12 @@ export default {
       background: $danger;
       color: #fff;
       padding: 15px 25px;
+    }
+
+    .limited-results-notice {
+      background: #e9e9e9;
+      padding: 15px 25px;
+      margin-top: 20px;
     }
   }
 </style>

@@ -9,6 +9,7 @@ const session = require('express-session');
 const sessionStore = require('./sessionStore');
 const Raven = require('raven');
 const cors = require('cors');
+const bearerToken = require('express-bearer-token');
 
 module.exports = function (app) {
   app.root = path.resolve(__dirname, '..', '..');
@@ -26,6 +27,7 @@ module.exports = function (app) {
       return next(null, true);
     }
   }));
+  app.use(bearerToken());
 
   app.use(require('body-parser').urlencoded({ extended: true }));
   app.use(bodyParser.json());
