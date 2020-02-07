@@ -1,8 +1,7 @@
 const dictionary = require('../../services/dictionary');
+const { clean } = require('../../lib/Dictionary');
 const config = require('../../config');
 const Key = require('../keys/Key');
-
-const clean = str => str.toLowerCase().replace(/[^A-Za-z0-9]/, '').split('').sort().join('');
 
 function isValidAPIKey(apikey) {
   return new Promise((resolve, reject) => {
@@ -52,22 +51,25 @@ module.exports.generate = async function (req, res) {
   const cleanOriginal = clean(phrase);
   const anagrams = [];
 
-  for (let word of dictionary.words) {
-    const cleanWord = clean(word);
+  const fromIdx = dictionary.lengthStartIndices[cleanOriginal.length];
+  const toIdx = dictionary.lengthStartIndices[cleanOriginal.length - 1];
 
-    if (cleanWord.length !== cleanOriginal.length) {
+  for (let i = fromIdx; i < toIdx; i++) {
+    const entry = dictionary.words[i];
+
+    if (entry.sequence !== cleanOriginal) {
       continue;
     }
 
-    if (cleanWord !== cleanOriginal) {
-      continue;
+    if (entry.word.length !== cleanOriginal.length) {
+      break;
     }
 
     if (limitResults && anagrams.length === config.app.dictionary.maxUnauthorizedResults) {
       break;
     }
 
-    anagrams.push(word);
+    anagrams.push(entry.word);
   }
 
   return res.json({
