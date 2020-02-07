@@ -13,7 +13,8 @@
           a(v-if='user', href='javascript:;', @click='handleLogoutClick') Log Out
       .hamburger-container
         a(href='javascript:;', @click='handleHamburgerClick')
-          i.fa.fa-bars
+          i.fa.fa-times(v-if='navOpened')
+          i.fa.fa-bars(v-else)
     section.content.mid(:class='{ auth: authPage }')
       transition(name='slide-fade', mode='out-in', appear=true)
         slot

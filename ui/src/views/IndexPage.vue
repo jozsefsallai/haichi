@@ -59,6 +59,8 @@ export default {
 
 <style lang="scss">
   @import 'src/styles/colors';
+  @import 'src/styles/globals';
+  @import 'src/styles/mixins';
 
   .haichi-form {
     margin-top: 60px;
@@ -95,6 +97,14 @@ export default {
 
       &:hover {
         background: lighten($accent, 10%);
+      }
+    }
+
+    @include ms-break {
+      display: block;
+
+      input, button {
+        width: 100%;
       }
     }
   }
