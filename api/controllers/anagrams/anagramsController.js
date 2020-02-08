@@ -3,6 +3,8 @@ const { clean } = require('../../lib/Dictionary');
 const config = require('../../config');
 const Key = require('../keys/Key');
 
+const Anagram = require('./AnagramBuilder');
+
 function isValidAPIKey(apikey) {
   return new Promise((resolve, reject) => {
     return Key.findOne({ where: { apikey } })
@@ -48,32 +50,16 @@ module.exports.generate = async function (req, res) {
   }
 
   const { phrase } = req.params;
-  const cleanOriginal = clean(phrase);
-  const anagrams = [];
 
-  const fromIdx = dictionary.lengthStartIndices[cleanOriginal.length];
-  const toIdx = dictionary.lengthStartIndices[cleanOriginal.length - 1];
+  const limit = limitResults
+    ? config.app.dictionary.maxUnauthorizedResults
+    : config.app.dictionary.maxResults;
 
-  for (let i = fromIdx; i < toIdx; i++) {
-    const entry = dictionary.words[i];
-
-    if (entry.sequence !== cleanOriginal) {
-      continue;
-    }
-
-    if (entry.word.length !== cleanOriginal.length) {
-      break;
-    }
-
-    if (limitResults && anagrams.length === config.app.dictionary.maxUnauthorizedResults) {
-      break;
-    }
-
-    anagrams.push(entry.word);
-  }
+  const builder = new Anagram(phrase, limit);
+  builder.buildAnagrams();
 
   return res.json({
     ok: true,
-    anagrams
+    anagrams: builder.anagrams
   });
 };

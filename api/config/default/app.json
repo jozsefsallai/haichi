@@ -9,7 +9,8 @@
   "logging": "console",
   "dictionary": {
     "path": "api/core/words_alpha.txt",
-    "maxUnauthorizedResults": 30
+    "maxUnauthorizedResults": 30,
+    "maxResults": 2000
   },
   "cache": {
     "defaultTimeout": 600

@@ -1,6 +1,20 @@
 const fs = require('fs');
 
 const clean = str => str.toLowerCase().replace(/[^a-z]/, '').split('').sort().join('');
+const count = sequence => {
+  const counter = {};
+
+  sequence.split('').forEach(letter => {
+    if (!counter[letter]) {
+      counter[letter] = 1;
+      return;
+    }
+
+    counter[letter]++;
+  });
+
+  return counter;
+};
 
 /**
  * @api
@@ -28,18 +42,21 @@ class Dictionary {
   /**
    * createWordObject()
    * Turns a word into a word object. A word object is an object
-   * that contains two properties: the word itself and the sequence
-   * it has. For example, if we pass the string "anagram" to it, the
-   * response will be { word: "anagram", sequence: "aaagmnr" }
+   * that contains 3 properties: the word itself, the sequence it
+   * has, and the count of each distinct letter. For example, if
+   * we pass the string "anagram" to it, the response will be
+   * { word: "anagram", sequence: "aaagmnr", counter: { ... } }
    * @param {string} word - the word to convert to a word object
    * @returns {object}
    */
   createWordObject(word) {
     const sequence = clean(word);
+    const counter = count(sequence);
 
     return {
       word,
-      sequence
+      sequence,
+      counter
     };
   }
 
@@ -79,3 +96,4 @@ class Dictionary {
 
 module.exports.Dictionary = Dictionary;
 module.exports.clean = clean;
+module.exports.count = count;
