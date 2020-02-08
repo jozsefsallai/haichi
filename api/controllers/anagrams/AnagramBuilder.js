@@ -54,7 +54,7 @@ class Anagram {
       return;
     }
 
-    const str = [base.word, ...stack].join(' ');
+    const str = [ ...stack, base.word ].join(' ');
     const cleanStr = clean(str);
     if (cleanStr === this.cleanInput && !this.anagrams.includes(str)) {
       this.anagrams.push(str);
