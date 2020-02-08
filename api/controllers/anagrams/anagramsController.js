@@ -1,4 +1,3 @@
-const dictionary = require('../../services/dictionary');
 const { clean } = require('../../lib/Dictionary');
 const config = require('../../config');
 const Key = require('../keys/Key');
