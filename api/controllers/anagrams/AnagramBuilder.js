@@ -5,9 +5,8 @@ const { clean, count } = require('../../lib/Dictionary');
 
 class Anagram {
   constructor(input, limit) {
-    this.input = input;
     this.limit = limit;
-    this.cleanInput = clean(input);
+    this.cleanInput = input;
     this.inputCounter = count(this.cleanInput);
     this.baseStack = this.buildBaseStack();
     this.anagrams = [];

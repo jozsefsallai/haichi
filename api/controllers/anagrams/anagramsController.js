@@ -1,3 +1,6 @@
+const { performance } = require('perf_hooks');
+const cache = require('./cacheAnagrams');
+
 const { clean } = require('../../lib/Dictionary');
 const config = require('../../config');
 const Key = require('../keys/Key');
@@ -49,13 +52,34 @@ module.exports.generate = async function (req, res) {
   }
 
   const { phrase } = req.params;
+  const cleanPhrase = clean(phrase);
 
   const limit = limitResults
     ? config.app.dictionary.maxUnauthorizedResults
     : config.app.dictionary.maxResults;
 
-  const builder = new Anagram(phrase, limit);
+  try {
+    const anagrams = await cache.get(cleanPhrase);
+
+    if (anagrams) {
+      return res.json({
+        ok: true,
+        anagrams: anagrams.slice(0, limit)
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({ ok: false });
+  }
+
+  const builder = new Anagram(cleanPhrase, limit);
+
+  const start = performance.now();
   builder.buildAnagrams();
+  const end = performance.now();
+
+  if (Math.floor((end - start) / 1000) > config.app.cache.anagramCache && !limitResults) {
+    await cache.write(cleanPhrase, builder.anagrams);
+  }
 
   return res.json({
     ok: true,
