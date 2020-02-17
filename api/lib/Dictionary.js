@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const clean = str => str.toLowerCase().replace(/[^a-z]/, '').split('').sort().join('');
+const clean = str => str.toLowerCase().replace(/[^a-z]/g, '').split('').sort().join('');
 const count = sequence => {
   const counter = {};
 
